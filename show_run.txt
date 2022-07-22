@@ -1,0 +1,529 @@
+[1m[36mshow_run************************************************************************[0m
+[0m[1m[34m* R1 ** changed : False ********************************************************[0m
+[0m[1m[32mvvvv show_run ** changed : False vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv INFO[0m
+[0m[1m[32m---- send_command ** changed : False ------------------------------------------- INFO[0m
+[0mBuilding configuration...
+
+Current configuration : 2003 bytes
+!
+version 12.4
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no aaa new-model
+memory-size iomem 5
+ip cef
+!
+!
+!
+!
+ip domain name cisco.com
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+username syd privilege 15 password 0 syd123
+archive
+ log config
+  hidekeys
+!
+!
+!
+vlan internal allocation policy ascending
+!
+ip ssh version 2
+!
+!
+!
+!
+interface Loopback1
+ ip address 1.1.1.1 255.255.255.0
+!
+interface FastEthernet0/0
+ no ip address
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/1
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+!
+interface FastEthernet1/0
+ no switchport
+ ip address 192.168.15.101 255.255.255.0
+!
+interface FastEthernet1/1
+!
+interface FastEthernet1/2
+!
+interface FastEthernet1/3
+!
+interface FastEthernet1/4
+!
+interface FastEthernet1/5
+!
+interface FastEthernet1/6
+!
+interface FastEthernet1/7
+!
+interface FastEthernet1/8
+!
+interface FastEthernet1/9
+!
+interface FastEthernet1/10
+!
+interface FastEthernet1/11
+!
+interface FastEthernet1/12
+!
+interface FastEthernet1/13
+!
+interface FastEthernet1/14
+!
+interface FastEthernet1/15
+!
+interface FastEthernet2/0
+!
+interface FastEthernet2/1
+!
+interface FastEthernet2/2
+!
+interface FastEthernet2/3
+!
+interface FastEthernet2/4
+!
+interface FastEthernet2/5
+!
+interface FastEthernet2/6
+!
+interface FastEthernet2/7
+!
+interface FastEthernet2/8
+!
+interface FastEthernet2/9
+!
+interface FastEthernet2/10
+!
+interface FastEthernet2/11
+!
+interface FastEthernet2/12
+!
+interface FastEthernet2/13
+!
+interface FastEthernet2/14
+!
+interface FastEthernet2/15
+!
+interface Vlan1
+ no ip address
+!
+router ospf 100
+ log-adjacency-changes
+ network 0.0.0.0 255.255.255.255 area 0
+!
+ip forward-protocol nd
+!
+!
+ip http server
+no ip http secure-server
+!
+logging 5.5.5.5
+no cdp run
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+line aux 0
+line vty 0 4
+ login local
+ transport input ssh
+!
+ntp server 1.1.1.1
+!
+end[0m
+[0m[1m[32m^^^^ END show_run ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[0m[1m[34m* SW1 ** changed : False *******************************************************[0m
+[0m[1m[32mvvvv show_run ** changed : False vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv INFO[0m
+[0m[1m[32m---- send_command ** changed : False ------------------------------------------- INFO[0m
+[0mBuilding configuration...
+
+Current configuration : 5331 bytes
+!
+! Last configuration change at 00:01:12 UTC Fri Jul 22 2022
+!
+version 15.0
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+service compress-config
+!
+hostname SW1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+username mel privilege 15 password 0 mel123
+no aaa new-model
+!
+!
+!
+!
+!
+vtp domain CISCO-vIOS
+vtp mode transparent
+!
+!
+!
+ip domain-name cisco.com
+ip cef
+no ipv6 cef
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+vlan internal allocation policy ascending
+!
+vlan 100
+ name VLAN100
+!
+vlan 200,300
+!
+ip ssh version 2
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Loopback1
+ ip address 2.2.2.2 255.255.255.0
+!
+interface GigabitEthernet0/0
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet0/1
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet0/3
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet0/2
+ no switchport
+ ip address 192.168.15.102 255.255.255.0
+ negotiation auto
+!
+router ospf 100
+ network 0.0.0.0 255.255.255.255 area 0
+!
+ip forward-protocol nd
+!
+no ip http server
+no ip http secure-server
+!
+!
+!
+logging host 5.5.5.5
+!
+!
+!
+control-plane
+!
+banner exec ^C
+**************************************************************************
+* IOSv - Cisco Systems Confidential                                      *
+*                                                                        *
+* This software is provided as is without warranty for internal          *
+* development and testing purposes only under the terms of the Cisco     *
+* Early Field Trial agreement.  Under no circumstances may this software *
+* be used for production purposes or deployed in a production            *
+* environment.                                                           *
+*                                                                        *
+* By using the software, you agree to abide by the terms and conditions  *
+* of the Cisco Early Field Trial Agreement as well as the terms and      *
+* conditions of the Cisco End User License Agreement at                  *
+* http://www.cisco.com/go/eula                                           *
+*                                                                        *
+* Unauthorized use or distribution of this software is expressly         *
+* Prohibited.                                                            *
+**************************************************************************^C
+banner incoming ^C
+**************************************************************************
+* IOSv - Cisco Systems Confidential                                      *
+*                                                                        *
+* This software is provided as is without warranty for internal          *
+* development and testing purposes only under the terms of the Cisco     *
+* Early Field Trial agreement.  Under no circumstances may this software *
+* be used for production purposes or deployed in a production            *
+* environment.                                                           *
+*                                                                        *
+* By using the software, you agree to abide by the terms and conditions  *
+* of the Cisco Early Field Trial Agreement as well as the terms and      *
+* conditions of the Cisco End User License Agreement at                  *
+* http://www.cisco.com/go/eula                                           *
+*                                                                        *
+* Unauthorized use or distribution of this software is expressly         *
+* Prohibited.                                                            *
+**************************************************************************^C
+banner login ^C
+**************************************************************************
+* IOSv - Cisco Systems Confidential                                      *
+*                                                                        *
+* This software is provided as is without warranty for internal          *
+* development and testing purposes only under the terms of the Cisco     *
+* Early Field Trial agreement.  Under no circumstances may this software *
+* be used for production purposes or deployed in a production            *
+* environment.                                                           *
+*                                                                        *
+* By using the software, you agree to abide by the terms and conditions  *
+* of the Cisco Early Field Trial Agreement as well as the terms and      *
+* conditions of the Cisco End User License Agreement at                  *
+* http://www.cisco.com/go/eula                                           *
+*                                                                        *
+* Unauthorized use or distribution of this software is expressly         *
+* Prohibited.                                                            *
+**************************************************************************^C
+!
+line con 0
+ logging synchronous
+line aux 0
+line vty 0 4
+ logging synchronous
+ login local
+ transport input ssh
+line vty 5 15
+ logging synchronous
+ login
+!
+ntp server 2.2.2.2
+!
+end[0m
+[0m[1m[32m^^^^ END show_run ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[0m[1m[34m* SW2 ** changed : False *******************************************************[0m
+[0m[1m[32mvvvv show_run ** changed : False vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv INFO[0m
+[0m[1m[32m---- send_command ** changed : False ------------------------------------------- INFO[0m
+[0mBuilding configuration...
+
+Current configuration : 5272 bytes
+!
+! Last configuration change at 00:01:13 UTC Fri Jul 22 2022
+!
+version 15.0
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+service compress-config
+!
+hostname SW2
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+username bris privilege 15 password 0 bris123
+no aaa new-model
+!
+!
+!
+!
+!
+vtp domain CISCO-vIOS
+vtp mode transparent
+!
+!
+!
+ip domain-name cisco.com
+ip cef
+no ipv6 cef
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+vlan internal allocation policy ascending
+!
+vlan 100
+ name VLAN100
+!
+vlan 200,300
+!
+ip ssh version 2
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Loopback1
+ ip address 3.3.3.3 255.255.255.0
+!
+interface GigabitEthernet0/0
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet0/1
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet0/3
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet0/2
+ no switchport
+ ip address 192.168.15.103 255.255.255.0
+ negotiation auto
+!
+router ospf 100
+ network 0.0.0.0 255.255.255.255 area 0
+!
+ip forward-protocol nd
+!
+no ip http server
+no ip http secure-server
+!
+!
+!
+logging host 5.5.5.5
+!
+!
+!
+control-plane
+!
+banner exec ^C
+**************************************************************************
+* IOSv - Cisco Systems Confidential                                      *
+*                                                                        *
+* This software is provided as is without warranty for internal          *
+* development and testing purposes only under the terms of the Cisco     *
+* Early Field Trial agreement.  Under no circumstances may this software *
+* be used for production purposes or deployed in a production            *
+* environment.                                                           *
+*                                                                        *
+* By using the software, you agree to abide by the terms and conditions  *
+* of the Cisco Early Field Trial Agreement as well as the terms and      *
+* conditions of the Cisco End User License Agreement at                  *
+* http://www.cisco.com/go/eula                                           *
+*                                                                        *
+* Unauthorized use or distribution of this software is expressly         *
+* Prohibited.                                                            *
+**************************************************************************^C
+banner incoming ^C
+**************************************************************************
+* IOSv - Cisco Systems Confidential                                      *
+*                                                                        *
+* This software is provided as is without warranty for internal          *
+* development and testing purposes only under the terms of the Cisco     *
+* Early Field Trial agreement.  Under no circumstances may this software *
+* be used for production purposes or deployed in a production            *
+* environment.                                                           *
+*                                                                        *
+* By using the software, you agree to abide by the terms and conditions  *
+* of the Cisco Early Field Trial Agreement as well as the terms and      *
+* conditions of the Cisco End User License Agreement at                  *
+* http://www.cisco.com/go/eula                                           *
+*                                                                        *
+* Unauthorized use or distribution of this software is expressly         *
+* Prohibited.                                                            *
+**************************************************************************^C
+banner login ^C
+**************************************************************************
+* IOSv - Cisco Systems Confidential                                      *
+*                                                                        *
+* This software is provided as is without warranty for internal          *
+* development and testing purposes only under the terms of the Cisco     *
+* Early Field Trial agreement.  Under no circumstances may this software *
+* be used for production purposes or deployed in a production            *
+* environment.                                                           *
+*                                                                        *
+* By using the software, you agree to abide by the terms and conditions  *
+* of the Cisco Early Field Trial Agreement as well as the terms and      *
+* conditions of the Cisco End User License Agreement at                  *
+* http://www.cisco.com/go/eula                                           *
+*                                                                        *
+* Unauthorized use or distribution of this software is expressly         *
+* Prohibited.                                                            *
+**************************************************************************^C
+!
+line con 0
+ logging synchronous
+line aux 0
+line vty 0 4
+ logging synchronous
+ login local
+ transport input ssh
+line vty 5 15
+ logging synchronous
+ login
+!
+ntp server 3.3.3.3
+!
+end[0m
+[0m[1m[32m^^^^ END show_run ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[0m
